@@ -75,6 +75,8 @@ public abstract class BaseActivity extends AppCompatActivity implements OnGestur
   public boolean onGesture(Gesture gesture) {
     switch (gesture) {
       case SWIPE_DOWN:
+        return true;
+      case TWO_FINGER_SWIPE_DOWN:
         finish();
         return true;
       default:

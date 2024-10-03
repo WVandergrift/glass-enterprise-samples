@@ -16,6 +16,7 @@
 
 package com.example.android.glass.cardsample.fragments;
 
+import android.content.Context;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -24,49 +25,50 @@ import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+
+import com.example.android.glass.cardsample.HomeAssistant;
 import com.example.android.glass.cardsample.R;
 
 /**
  * Fragment with the two column layout.
  */
-public class ColumnLayoutFragment extends BaseFragment {
+public class SwitchFragment extends BaseFragment {
 
   private static final String IMAGE_KEY = "image_key";
-  private static final String TEXT_KEY = "text_key";
-  private static final String FOOTER_KEY = "footer_key";
-  private static final String TIMESTAMP_KEY = "timestamp_key";
-  private static final int TEXT_SIZE = 30;
+  private static final String NAME_KEY = "name_key";
+  private static final String ENTITY_ID = "entity_id";
+  private static final int BODY_TEXT_SIZE = 40;
   private static final int IMAGE_PADDING = 40;
+  private static HomeAssistant homeAssistant;
 
   /**
-   * Returns new instance of {@link ColumnLayoutFragment}.
+   * Returns new instance of {@link SwitchFragment}.
    *
-   * @param image is a android image resource to create a imageView on the left column.
-   * @param text is a String with the card main text.
-   * @param footer is a String with the card footer text.
-   * @param timestamp is a String with the card timestamp text.
+   * @param name is a String with the name of the switch.
    */
-  public static ColumnLayoutFragment newInstance(int image, String text, String footer,
-      String timestamp) {
-    final ColumnLayoutFragment myFragment = new ColumnLayoutFragment();
+  public static SwitchFragment newInstance(Context context, String name, String entityId) {
+    final SwitchFragment myFragment = new SwitchFragment();
+    homeAssistant = HomeAssistant.getInstance(context);
 
     final Bundle args = new Bundle();
-    args.putInt(IMAGE_KEY, image);
-    args.putString(TEXT_KEY, text);
-    args.putString(FOOTER_KEY, footer);
-    args.putString(TIMESTAMP_KEY, timestamp);
+    args.putInt(IMAGE_KEY, R.drawable.ic_switch);
+    args.putString(NAME_KEY, name);
+    args.putString(ENTITY_ID, entityId);
     myFragment.setArguments(args);
 
     return myFragment;
   }
 
-  public void updateFootnoteText(String newText) {
-    if (getView() == null) return;
-    TextView footnoteTextView = getView().findViewById(R.id.footer);
-    if (footnoteTextView != null) {
-      footnoteTextView.setText(newText);
+  @Override
+  public void onSingleTapUp() {
+    if (getArguments() != null) {
+      homeAssistant.toggleSwitch(getArguments().getString(ENTITY_ID));
+      Toast.makeText(getActivity(), "Toggling Light", Toast.LENGTH_SHORT)
+              .show();
     }
   }
 
@@ -85,18 +87,12 @@ public class ColumnLayoutFragment extends BaseFragment {
       leftColumn.addView(imageView);
 
       final TextView textView = new TextView(getActivity());
-      textView.setText(getArguments().getString(TEXT_KEY));
-      textView.setTextSize(TEXT_SIZE);
+      textView.setText(getArguments().getString(NAME_KEY));
+      textView.setTextSize(BODY_TEXT_SIZE);
       textView.setTypeface(Typeface.create(getString(R.string.thin_font), Typeface.NORMAL));
 
       final FrameLayout rightColumn = view.findViewById(R.id.right_column);
       rightColumn.addView(textView);
-
-      final TextView footer = view.findViewById(R.id.footer);
-      footer.setText(getArguments().getString(FOOTER_KEY, getString(R.string.empty_string)));
-
-      final TextView timestamp = view.findViewById(R.id.timestamp);
-      timestamp.setText(getArguments().getString(TIMESTAMP_KEY, getString(R.string.empty_string)));
     }
     return view;
   }

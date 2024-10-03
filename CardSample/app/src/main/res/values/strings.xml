@@ -29,4 +29,5 @@
   <string name="like_this_sample">Do you like this sample?\n\nSource code is available at:\ng.co/glass/samples</string>
   <string name="menu_font">sans-serif-thin</string>
   <string name="menu_item">Menu item</string>
+  <string name="light_card">Living Room Light</string>
 </resources>

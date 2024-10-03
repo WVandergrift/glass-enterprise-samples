@@ -19,10 +19,14 @@ package com.example.android.glass.cardsample.fragments;
 /**
  * Listener for the singleTapUp gesture.
  */
-public interface OnSingleTapUpListener {
+public interface OnGestureListener {
 
   /**
    * Should be used to notify about the occurrence of the singleTapUp gesture.
    */
   void onSingleTapUp();
+
+  void onSwipeUp();
+
+  void onSwipeDown();
 }

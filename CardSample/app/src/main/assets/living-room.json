@@ -1,0 +1,30 @@
+{
+  "fragments": [
+    {
+      "type": "LightFragment",
+      "drawable": "R.drawable.ic_lightbulb",
+      "text": "Light Card",
+      "footnote": "Footnote Sample",
+      "timestamp": "Timestamp Sample"
+    },
+    {
+      "type": "SwitchFragment",
+      "name": "Living Room Lights",
+      "entityId": "switch.living_room"
+    },
+    {
+      "type": "MainLayoutFragment",
+      "text": "Text Sample",
+      "footnote": "Footnote Sample",
+      "timestamp": "Timestamp Sample",
+      "menu": "null"
+    },
+    {
+      "type": "ColumnLayoutFragment",
+      "drawable": "R.drawable.ic_style",
+      "text": "Columns Sample",
+      "footnote": "Footnote Sample",
+      "timestamp": "Timestamp Sample"
+    }
+  ]
+}

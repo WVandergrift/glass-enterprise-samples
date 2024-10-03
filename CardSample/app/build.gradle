@@ -29,6 +29,10 @@ android {
     buildFeatures {
         dataBinding = true
     }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
 }
 
 dependencies {
@@ -36,4 +40,6 @@ dependencies {
     implementation 'androidx.recyclerview:recyclerview:1.1.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
     implementation 'com.google.android.material:material:1.2.1'
+    implementation 'com.github.weliem:blessed-android:2.0.6'
+    implementation 'org.videolan.android:libvlc-all:3.+'
 }

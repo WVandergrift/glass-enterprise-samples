@@ -27,7 +27,7 @@ import com.example.android.glass.cardsample.menu.MenuActivity;
 /**
  * Base class for each fragment. Provides functionality to start new activity with a menu.
  */
-public abstract class BaseFragment extends Fragment implements OnSingleTapUpListener {
+public abstract class BaseFragment extends Fragment implements OnGestureListener {
 
   /**
    * Key for obtaining menu value from fragment arguments.
@@ -53,6 +53,24 @@ public abstract class BaseFragment extends Fragment implements OnSingleTapUpList
         intent.putExtra(MENU_KEY, menu);
         startActivityForResult(intent, REQUEST_CODE);
       }
+    }
+  }
+
+  @Override
+  public void onSwipeUp() {
+    if (getArguments() != null) {
+      int menu = getArguments().getInt(MENU_KEY, MENU_DEFAULT_VALUE);
+      if (menu != MENU_DEFAULT_VALUE) {
+        Intent intent = new Intent(getActivity(), MenuActivity.class);
+        intent.putExtra(MENU_KEY, menu);
+        startActivityForResult(intent, REQUEST_CODE);
+      }
+    }
+  }
+
+  @Override
+  public void onSwipeDown() {
+    if (getArguments() != null) {
     }
   }
 

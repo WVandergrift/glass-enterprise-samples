@@ -1,0 +1,9 @@
+{
+  "fragments": [
+    {
+      "type": "SwitchFragment",
+      "name": "Kitchen Lights",
+      "entityId": "switch.kitchen_sink_light"
+    }
+  ]
+}
